@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Playlist Generator | Tracks</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="UnExplored">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Playlist Generator | Tracks</title>
+<meta name="generator" content="Jekyll v3.9.3" />
+<meta property="og:title" content="Playlist Generator" />
+<meta property="og:locale" content="en_US" />
+<meta name="description" content="UnExplored" />
+<meta property="og:description" content="UnExplored" />
+<link rel="canonical" href="http://localhost:4000/tracks/utils/format/" />
+<meta property="og:url" content="http://localhost:4000/tracks/utils/format/" />
+<meta property="og:site_name" content="Tracks" />
+<meta property="og:type" content="website" />
+<meta name="twitter:card" content="summary" />
+<meta property="twitter:title" content="Playlist Generator" />
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebPage","description":"UnExplored","headline":"Playlist Generator","url":"http://localhost:4000/tracks/utils/format/"}</script>
+<!-- End Jekyll SEO tag -->
+
+     <!-- Latest compiled and minified CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Latest compiled JavaScript -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<link rel="icon" href="/tracks/assets/img/favicon.ico" type="image/x-icon">
+
+<style>
+  
+  .fakeimg {
+    height: 200px;
+    background: #aaa;
+
+  }
+</style>
+  </head>
+<body>
+
+    <div class="p-5 text-center">
+    <!-- one liner Boolean if page is a post -->
+    
+
+    
+    <h1>Tracks..</h1>
+    <p>from the Dark Portal.</p>
+    
+  </div>
+
+  <nav class="navbar navbar-expand-sm sticky-top border bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="/tracks/"><img src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="/tracks/">Tracks</a>
+          </li>
+          <li class="nav-item d-non e">
+            <a class="nav-link" href="/tracks/explore/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tracks/about/">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <div class="container mt-5">
+    <div class="row">
+      
+      
+      
+      <div class="col-sm-12">
+        <!-- Main content -->
+         <h2 class="my-4">Generate HTML Playlist</h2>
+
+<div class="mb-3">
+  <label for="trackInput" class="form-label">Enter playlist (one line per song):</label>
+  <textarea id="trackInput" class="form-control" rows="6" placeholder="Princess - Bad Romance (4:09)"></textarea>
+</div>
+
+<button class="btn btn-primary mb-3" onclick="generatePlaylist()">Generate HTML</button>
+
+<div id="outputSection" class="d-none">
+  <h3>Generated HTML:</h3>
+  <pre id="output" class="bg-light border p-3 rounded"></pre>
+  <button class="btn btn-outline-secondary mt-2" onclick="copyToClipboard()">Copy to Clipboard</button>
+</div>
+
+<script>
+  function generatePlaylist() {
+    const rawText = document.getElementById("trackInput").value.trim();
+    const outputSection = document.getElementById("outputSection");
+    const output = document.getElementById("output");
+
+    if (!rawText) {
+      outputSection.classList.add("d-none");
+      output.textContent = "";
+      return;
+    }
+
+    const tracks = rawText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+
+    let html = `<blockquote>\n  <span class="header">Playlist files:</span>\n  <ol><br>\n`;
+
+    tracks.forEach(track => {
+      html += `    <li>${track} <br></li>\n`;
+    });
+
+    html += `  </ol>\n</blockquote>`;
+
+    output.textContent = html;
+    outputSection.classList.remove("d-none");
+  }
+
+  function copyToClipboard() {
+    const output = document.getElementById("output");
+    const text = output.textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert("HTML copied to clipboard!");
+    }).catch(err => {
+      alert("Failed to copy: " + err);
+    });
+  }
+</script>
+
+      </div>
+    </div>
+  </div>
+  
+    <div class="mt-5 p-4 border-top text-center">
+    <p class="small">Tracks are provided as is and are not guaranteed to be without errors.<br/>
+      &copy;2025<br/>
+    </p>
+  </div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+---
+layout: base
+---
+
+{% if page.collection == "posts" %}
+  <h1 class="display-4"> This is a post </h1>
+{% endif %}
+
+    <div class="container py-5">
+      <article class="mx-auto" style="max-width: 720px;">
+        <header class="mb-4">
+          <h1 class="display-4">{{ page.title }}</h1>
+          <p class="text-muted">{{ page.date | date: "%B %d, %Y" }}</p>
+        </header>
+
+        <section class="content mb-5">
+          {{ content }}
+        </section>
+
+        <nav class="d-flex justify-content-between border-top pt-4">
+          {% if page.previous %}
+            <a href="{{ page.previous.url }}" class="btn btn-outline-primary">
+              &larr; {{ page.previous.title }}
+            </a>
+          {% else %}
+            <span></span>
+          {% endif %}
+
+          {% if page.next %}
+            <a href="{{ page.next.url }}" class="btn btn-outline-primary">
+              {{ page.next.title }} &rarr;
+            </a>
+          {% else %}
+            <span></span>
+          {% endif %}
+        </nav>
+      </article>
+    </div>

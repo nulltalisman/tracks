@@ -1,0 +1,35 @@
+  <div class="p-5 text-center">
+    <!-- one liner Boolean if page is a post -->
+    {% assign isPost = page.collection == "posts" %}
+
+    {% if isPost %}
+    <h1>{{ page.title }}</h1>
+    <p>{{ page.date | date: "%B %d, %Y" }}</p>
+    {% else %}
+    <h1>{{ site.title }}..</h1>
+    <p>from the Dark Portal.</p>
+    {% endif %}
+  </div>
+
+  <nav class="navbar navbar-expand-sm sticky-top border bg-light">
+    <div class="container">
+      <a class="navbar-brand" href="{{ site.baseurl }}/"><img src="https://www.w3schools.com/bootstrap5/img_avatar1.png" alt="Avatar Logo" style="width:40px;" class="rounded-pill"></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      
+      <div class="collapse navbar-collapse" id="collapsibleNavbar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a class="nav-link active" href="{{ site.baseurl }}/">{{ site.title }}</a>
+          </li>
+          <li class="nav-item d-non e">
+            <a class="nav-link" href="{{ site.baseurl }}/explore/">Home</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="{{ site.baseurl }}/about/">About</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

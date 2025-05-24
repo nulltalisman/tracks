@@ -1,0 +1,58 @@
+---
+layout: base
+title: Playlist Generator
+permalink: /utils/format/
+---
+
+<h2 class="my-4">Generate HTML Playlist</h2>
+
+<div class="mb-3">
+  <label for="trackInput" class="form-label">Enter playlist (one line per song):</label>
+  <textarea id="trackInput" class="form-control" rows="6" placeholder="Princess - Bad Romance (4:09)"></textarea>
+</div>
+
+<button class="btn btn-primary mb-3" onclick="generatePlaylist()">Generate HTML</button>
+
+<div id="outputSection" class="d-none">
+  <h3>Generated HTML:</h3>
+  <pre id="output" class="bg-light border p-3 rounded"></pre>
+  <button class="btn btn-outline-secondary mt-2" onclick="copyToClipboard()">Copy to Clipboard</button>
+</div>
+
+<script>
+  function generatePlaylist() {
+    const rawText = document.getElementById("trackInput").value.trim();
+    const outputSection = document.getElementById("outputSection");
+    const output = document.getElementById("output");
+
+    if (!rawText) {
+      outputSection.classList.add("d-none");
+      output.textContent = "";
+      return;
+    }
+
+    const tracks = rawText.split('\n').map(line => line.trim()).filter(line => line.length > 0);
+
+    let html = `<blockquote>\n  <span class="header">Playlist files:</span>\n  <ol><br>\n`;
+
+    tracks.forEach(track => {
+      html += `    <li>${track} <br></li>\n`;
+    });
+
+    html += `  </ol>\n</blockquote>`;
+
+    output.textContent = html;
+    outputSection.classList.remove("d-none");
+  }
+
+  function copyToClipboard() {
+    const output = document.getElementById("output");
+    const text = output.textContent;
+
+    navigator.clipboard.writeText(text).then(() => {
+      alert("HTML copied to clipboard!");
+    }).catch(err => {
+      alert("Failed to copy: " + err);
+    });
+  }
+</script>
